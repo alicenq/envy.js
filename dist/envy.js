@@ -93,14 +93,37 @@ NV.merge = function (target, source, strategy) {
     if (typeof (strategy) == 'string') {
         switch (strategy.toLowerCase()) {
             case 'ours':
-                strategy = function (target, source, key) { return target; }
+                strategy = function (target, source, key) {
+                    return target;
+                }
                 break;
             case 'theirs':
-                strategy = function (target, source, key) { return source; }
+                strategy = function (target, source, key) {
+                    return source;
+                }
+                break;
+            case 'combine':
+                strategy = function (target, source, key) {
+                    if (Array.isArray(source)) {
+                        if (!Array.isArray(target)) {
+                            target = [target];
+                        }
+                        target.concat(source);
+                        return target;
+                    } else {
+                        try {
+                            return target + source;
+                        } catch (err) {
+                            throw new TypeError('Unresolved merge conflict (key=' + key + ')')
+                        }
+                    }
+                }
                 break;
             case 'error':
                 strategy = function (target, source, key) {
-                    if (target != source) throw new TypeError('Merge conflict on key ' + key)
+                    if (target != source) {
+                        throw new TypeError('Unresolved merge conflict (key=' + key + ')')
+                    }
                 }
                 break;
         }
@@ -120,7 +143,7 @@ NV.merge = function (target, source, strategy) {
             .forEach(function (key) {
                 if (!(key in src)) return
 
-                if (typeof (src[key]) == 'object') {
+                if (typeof (src[key]) == 'object' && !Array.isArray(src[key])) {
                     if (typeof (tgt[key]) != 'object') {
                         tgt[key] = {}
                     }
