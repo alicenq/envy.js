@@ -2,9 +2,38 @@ envy.js
 ======
 A free javascript browser environment utility library
 
-Downloading
+Installation
 ======
-There are two versions packaged. One is the development version, the other is a minified version. I believe this should be self explanatory. TODO: get this published if it gets enough attention
+There are two versions packaged. One is the development version, the other is a minified version. I believe this should be self explanatory. 
+
+Git Clone
+------
+```
+git clone https://github.com/alicenq/envy.js.git
+cd envy.js/dist
+```
+
+NPM
+------
+`npm install envy-jsutil`
+
+
+
+UNPKG
+------
+Add the following tag to your head tag
+
+**Dev**
+```html
+<script src='https://unpkg.com/envy-jsutil/dist/envy.js'></script>
+```
+
+
+**Prod**
+```html
+<script src='https://unpkg.com/envy-jsutil/dist/envy.min.js'></script>
+```
+
 
 
 Window Events
