@@ -1,0 +1,37 @@
+{
+  "name": "envy-jsutil",
+  "version": "1.0.2",
+  "description": "A free javascript browser environment utility library",
+  "main": "dist/envy.js",
+  "scripts": {
+    "prepackage": "uglifyjs --compress --mangle -- dist/envy.js > dist/envy.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alicenq/envy.js.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "browser",
+    "utility",
+    "util",
+    "fetch",
+    "merge",
+    "assign",
+    "onload"
+  ],
+  "author": "Alice N.Q. (email@aliceq.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alicenq/envy.js/issues"
+  },
+  "homepage": "https://github.com/alicenq/envy.js#readme",
+  "unpkg": "dist/envy.min.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "uglifyjs": "^2.4.11"
+  }
+}
