@@ -44,7 +44,7 @@ NV.fetchJson = function (input, init) {
         fetch(input, init)
             .then(function (res) {
                 if (res.ok) return res.json();
-                else throw new MediaError(res.status + ' ' + res.statusText)
+                else throw res.status + ' ' + res.statusText;
             })
             .then(resolve)
             .catch(reject)
@@ -62,7 +62,7 @@ NV.fetchText = function (input, init) {
         fetch(input, init)
             .then(function (res) {
                 if (res.ok) return res.text();
-                else throw new MediaError(res.status + ' ' + res.statusText);
+                else throw res.status + ' ' + res.statusText;
             })
             .then(resolve)
             .catch(reject)
@@ -108,13 +108,12 @@ NV.merge = function (target, source, strategy) {
                         if (!Array.isArray(target)) {
                             target = [target];
                         }
-                        target.concat(source);
-                        return target;
+                        return target.concat(source);;
                     } else {
                         try {
                             return target + source;
                         } catch (err) {
-                            throw new TypeError('Unresolved merge conflict (key=' + key + ')')
+                            throw 'Unresolved merge conflict (key=' + key + ')';
                         }
                     }
                 }
@@ -122,7 +121,7 @@ NV.merge = function (target, source, strategy) {
             case 'error':
                 strategy = function (target, source, key) {
                     if (target != source) {
-                        throw new TypeError('Unresolved merge conflict (key=' + key + ')')
+                        throw 'Unresolved merge conflict (key=' + key + ')';
                     }
                 }
                 break;

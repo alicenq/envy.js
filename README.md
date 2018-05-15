@@ -21,15 +21,14 @@ NPM
 
 UNPKG
 ------
-Add the following tag to your head tag
 
-**Dev**
+Development
 ```html
 <script src='https://unpkg.com/envy-jsutil/dist/envy.js'></script>
 ```
 
 
-**Prod**
+Production
 ```html
 <script src='https://unpkg.com/envy-jsutil/dist/envy.min.js'></script>
 ```
@@ -70,24 +69,18 @@ An extension of the fetch API which simply returns an object in its Promise inst
 
 Usage: 
 ```javascript
-NV.fetchJson('/my/path')
-.then(function(obj){
-	alert(typeof(obj))
-})
-.catch(console.warn)
+// Prints decoded JSON data
+NV.fetchJson('/my/path').then(console.log)
 ```
 
-fetchData
+fetchText
 ------
 An extension of the fetch API which simply returns a string in its Promise instead of a Response. This can already be done quite easily using the fetch API, this just makes it faster and easier to type.
 
 Usage: 
 ```javascript
-NV.fetchData('/my/path')
-.then(function(data){
-	alert(data)
-})
-.catch(console.warn)
+// Prints text data
+NV.fetchData('/my/path').then(console.log)
 ```
 
 merge
@@ -99,32 +92,33 @@ This works recursively so when used on an object will merge all root-level param
 
 Usage:
 ```javascript
-// prints { a:1, b:2, c:3 }
+// prints { a:2, b:2, c:3 }
 console.log(NV.merge(
     { a: 2 }, 
     { b: 2, c: 3 }
 ));	
 
-// prints { a:3, b:2, c:3 }
+// prints { a:100, b:2, c:3 }
 console.log(NV.merge(
-    { a: 3 }, 
+    { a: 100 }, 
     { a: 1, b: 2, c: 3}, 
     'ours'
 ));	
 
-// prints { a:4, b:2, c:3 }
+// prints { a:50, b:2, c:3 }
 console.log(NV.merge(
-    { a: 7 },
-    { a: 1, b: 2, c: 3 }, 
+    { a: 100 },
+    { a: 0, b: 2, c: 3 }, 
     function(a, b){ return (a+b)/2; } 
 ));	
 
-// This is not a shallow merge!
-// prints { a: {a1: 1, a2: 2}, b: {b1: 3, b2: 4} }
+// prints { a: [0, 1, 2, 100, 200, 300], b: {c: 1, d: 1} }
 console.log(NV.merge(
-    { a: { a1: 1 }, b: { } },
-    { a: { a2: 2 }, b: { b1: 3, b2: 4 } }
+    { a: [0, 1, 2], b: {c: 1} },
+    { a: [100, 200, 300], b: {d: 1} },
+    'combine'
 ));	
+
 
 
 ```

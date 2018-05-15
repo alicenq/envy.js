@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <script src='../dist/envy.js'></script>
+
+
+    <script>
+    	// Test on load
+    	NV.onload(function(){ console.log('window loaded 1') });
+    	NV.onload(function(){ console.log('window loaded 2') });
+
+		NV.onload(function(){
+	    	NV.fetchJson('https://jsonplaceholder.typicode.com/posts/1').then(console.log).catch(console.warn)
+	    	NV.fetchText('https://jsonplaceholder.typicode.com/posts/1').then(console.log).catch(console.warn)
+
+	    	let tests = [
+	    		{   
+	    			target: { a: 2 }, 
+  					source: { b: 2, c: 3 }
+	    		},
+	    		{
+	    			target: { a: 2 }, 
+  					source: { a: 100, b: 2, c: 3 }
+	    		},
+	    		{
+	    			target: { a: 2 }, 
+  					source: { a:100, b: 2, c: 3 },
+  					mode: 'ours'
+	    		},
+	    		{
+	    			target: { a: 2 }, 
+  					source: { a:100, b: 2, c: 3 },
+  					mode: (a,b) => (a+b)/2
+	    		},
+	    		{
+	    			target: { a: [1, 2, 3] }, 
+  					source: {  a: [10, 20, 30] }
+	    		},
+	    		{
+	    			target: { a: [0, 1, 2], b: {c: 1} }, 
+  					source: { a: [100, 200, 300], b: {d: 1} },
+  					mode: 'combine'
+	    		}
+	    	];
+	    	tests.forEach(function(test, i){
+	    		console.log(i, test.target, test.source, NV.merge(test.target, test.source, test.mode))
+	    	})
+		})
+    </script>
+</head>
+
+</html>
