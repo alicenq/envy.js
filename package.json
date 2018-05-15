@@ -1,6 +1,6 @@
 {
   "name": "envy-jsutil",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A free javascript browser environment utility library",
   "main": "dist/envy.js",
   "scripts": {
