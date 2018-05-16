@@ -34,6 +34,93 @@ NV.on = function (event, callback) {
 }
 
 /**
+ * Imports an external script by creating a <script> tag on load. 
+ * 
+ * @param {string} src Location of the script file
+ * @param {string} [options] A dictionary of attributes to pass to the generated element.
+ * @param {HTMLElement} [refChild] A reference child to insert this script before. If none is specified then document.currentscript is used.
+ * @return {Promise<HTMLScriptElement>} The created tag
+ */
+NV.import = function (src, options, refChild) {
+    if (!src) return;
+
+    var tag = document.createElement('script')
+    tag.src = src;
+
+    if (options) {
+        Object.keys(options).forEach(function (key) {
+            if (options.hasOwnProperty(key)) {
+                tag[key] = options[key];
+            }
+        })
+    }
+
+    if (!refChild) {
+        refChild = document.currentScript;
+    }
+
+    return new Promise(function (resolve, reject) {
+        NV.onload(function () {
+            try {
+                if (refChild) {
+                    refChild.parentNode.insertBefore(tag, refChild);
+                } else {
+                    if (!document.head) {
+                        document.head = document.createElement('head')
+                    }
+                    document.head.appendChild(tag);
+                }
+                resolve(tag)
+            } catch (err) { reject(err) }
+        })
+    })
+}
+
+
+/**
+ * Imports an external script by creating a <link> tag on load. 
+ * 
+ * @param {string} href Location of the external file
+ * @param {string} [options] A dictionary of attributes to pass to the generated element.
+ * @param {HTMLElement} [refChild] A reference child to insert this script before. If none is specified then document.currentscript is used.
+ * @return {Promise<HTMLLinkElement>} The created tag
+ */
+NV.link = function (href, options, refChild) {
+    if (!href) return;
+
+    var tag = document.createElement('link');
+    tag.href = href;
+
+    if (options) {
+        Object.keys(options).forEach(function (key) {
+            if (options.hasOwnProperty(key)) {
+                tag[key] = options[key];
+            }
+        })
+    }
+
+    if (!refChild) {
+        refChild = document.currentScript;
+    }
+
+    return new Promise(function (resolve, reject) {
+        NV.onload(function () {
+            try {
+                if (refChild) {
+                    ref.parentNode.insertBefore(tag, refChild);
+                } else {
+                    if (!document.head) {
+                        document.head = document.createElement('head')
+                    }
+                    document.head.appendChild(tag);
+                }
+                resolve(tag)
+            } catch (err) { reject(err) }
+        })
+    })
+}
+
+/**
  * Utility version of fetch which first converts the returned data from JSON to an object
  * @param {string|Request} [input]
  * @param {RequestInit} [init]

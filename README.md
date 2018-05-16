@@ -35,7 +35,7 @@ Production
 
 
 
-Window Events
+Window Utility
 ======
 
 on
@@ -58,6 +58,30 @@ Usage:
 NV.onload(function(){
 	alert('The window has loaded!')
 })
+```
+
+
+Document Utility 
+======
+
+import
+------
+Used to import an external script by creating a &lt;script&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otehrwise it'll be inserted before the envy script.
+
+Usage: 
+```javascript
+// Prints out a script tag 
+NV.import('my/script.js', { type: 'text/javascript' }).then(console.log)
+```
+
+link
+------
+Used to import an external file, usually a stylesheet by creating a &lt;link&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otehrwise it'll be inserted before the envy script.
+
+Usage: 
+```javascript
+// Prints out a link tag 
+NV.import('my/stylesheet.css', { type: 'text/css', rel: 'stylesheet' }).then(console.log)
 ```
 
 Object Utility
