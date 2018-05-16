@@ -38,6 +38,12 @@ Production
 Window Utility
 ======
 
+
+WARNING!!!!!
+======
+DO NOT USE window.onload! Many of these methods will refuse to work if you override it!
+------
+
 on
 ------
 This is used to register window events, such as onload. Unlike the standard events however, this allows you to register multiple callbacks, which will then be called in whatever sequence they were registered. 
