@@ -45,7 +45,7 @@ This is used to register window events, such as onload. Unlike the standard even
 Usage:
  ```javascript
 NV.on('load', function(){
-	alert('The window has loaded!')
+    alert('The window has loaded!')
 })
 ```
 
@@ -56,7 +56,7 @@ This is simply shorthand for NV.on('load', ...)
 Usage: 
 ```javascript
 NV.onload(function(){
-	alert('The window has loaded!')
+    alert('The window has loaded!')
 })
 ```
 
@@ -66,7 +66,7 @@ Document Utility
 
 import
 ------
-Used to import an external script by creating a &lt;script&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otehrwise it'll be inserted before the envy script.
+Used to import an external script by creating a &lt;script&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otherwise it'll be inserted before the envy script.
 
 Usage: 
 ```javascript
@@ -79,7 +79,7 @@ NV.import('my/script.js', { type: 'text/javascript' }).then(console.log)
 
 link
 ------
-Used to import an external file, usually a stylesheet by creating a &lt;link&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otehrwise it'll be inserted before the envy script.
+Used to import an external file, usually a stylesheet by creating a &lt;link&gt; tag. A Promise is returned. If a reference child is specified this script will be inserted before the reference child, otherwise it'll be inserted before the envy script.
 
 Usage: 
 ```javascript
