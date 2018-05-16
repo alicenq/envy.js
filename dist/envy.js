@@ -175,8 +175,8 @@ NV.fetchText = function (input, init) {
 NV.merge = function (target, source, strategy) {
     if (strategy == undefined) strategy = 'ours'
 
-    if (typeof (target) != 'object') throw new TypeError('Target must be an object');
-    if (typeof (source) != 'object') throw new TypeError('Source must be an object');
+    if (typeof (target) != 'object') throw 'Target must be an object';
+    if (typeof (source) != 'object') throw 'Source must be an object';
     if (typeof (strategy) == 'string') {
         switch (strategy.toLowerCase()) {
             case 'ours':

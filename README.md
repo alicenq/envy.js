@@ -70,6 +70,9 @@ Used to import an external script by creating a &lt;script&gt; tag. A Promise is
 
 Usage: 
 ```javascript
+// Simple script import
+NV.import('my/script.js')
+
 // Prints out a script tag 
 NV.import('my/script.js', { type: 'text/javascript' }).then(console.log)
 ```
@@ -80,8 +83,11 @@ Used to import an external file, usually a stylesheet by creating a &lt;link&gt;
 
 Usage: 
 ```javascript
+// Simple CSS import
+NV.link('my/stylesheet.css')
+
 // Prints out a link tag 
-NV.import('my/stylesheet.css', { type: 'text/css', rel: 'stylesheet' }).then(console.log)
+NV.link('my/stylesheet.css', { type: 'text/css', rel: 'stylesheet' }).then(console.log)
 ```
 
 Object Utility
