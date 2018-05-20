@@ -5,14 +5,19 @@
 
 	<script>
 		// Test on load
-		NV.onload(function () { console.log('window loaded 1') });
-		NV.onload(function () { console.log('window loaded 2') });
+		NV.onload(function () {
+			console.log('Window load event 1');
 
-		NV.import('test-import.js', {
-			type: 'text/javascript'
-		}).then(console.log)
+			NV.onload(function () {
+				console.log('Window load event 2');
+			})
+		});
 
 		NV.onload(function () {
+			NV.import('test-import.js', {
+				type: 'text/javascript'
+			}).then(console.log)
+
 			NV.fetchJson('https://jsonplaceholder.typicode.com/posts/1').then(console.log).catch(console.warn)
 			NV.fetchText('https://jsonplaceholder.typicode.com/posts/1').then(console.log).catch(console.warn)
 

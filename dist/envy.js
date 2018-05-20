@@ -3,19 +3,29 @@
 
 function NV() { }
 
+/**
+ * Returns the current library version
+ */
+NV.version = function () { return '1.0.7'; }
+
 
 /**
- * Shortcut for NV.on('load', callback) (@see NV.on)
+ * Registers a function to run on window load. Unlike on('load'), if the window  has already loaded then it will invoke the function immediately
  * 
- * @param {function} callback Callback function which will receive the event as its first and only argument
+ * @param {function} callback Callback function which may receive the event as its first and only argument
  * @returns {void}
  */
 NV.onload = function (callback) {
-    var previous = window.onload;
-    window.onload = function (ev) {
-        if (previous) previous(ev)
-        callback(ev)
-    }.bind(window)
+    if (window.loaded) {
+        setTimeout(callback, 0)
+    } else {
+        var previous = window.onload;
+        window.onload = function (ev) {
+            if (previous) previous(ev)
+            window.loaded = true;
+            callback(ev)
+        }.bind(window)
+    }
 }
 
 /**
